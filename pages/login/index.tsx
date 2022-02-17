@@ -74,7 +74,12 @@ const Login: NextPage = () => {
           </div>
           <div className={styles.view}>
             <img src="/images/background2.jpg" className={styles.image} />
-            <div className={styles.menuWrapper}>
+            <div
+              className={styles.menuWrapper}
+              onClick={() => {
+                console.log("clicked");
+              }}
+            >
               <HiMenuAlt3 color="white" className={styles.menu} />
             </div>
             <div className={styles.viewContainer}>
@@ -84,7 +89,7 @@ const Login: NextPage = () => {
               </div>
               <div className={styles.heading}>
                 <Text color="white" weight="400">
-                  Start collect your
+                  Start collecting your
                 </Text>
                 <Title className={styles.title}>Reading</Title>
               </div>

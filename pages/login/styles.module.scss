@@ -59,11 +59,12 @@
   height: 100%;
   position: absolute;
   z-index: -1;
+  transform: scale(0.9);
 }
 
 .menuWrapper {
   position: absolute;
-  top: 25px;
+  top: 75px;
   right: 25px;
 }
 

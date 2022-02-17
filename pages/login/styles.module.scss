@@ -1,0 +1,106 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formSection {
+  width: 40%;
+  height: 100vh;
+}
+
+.view {
+  width: 60%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.formSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+  padding: 0 120px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.miniButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 40%;
+}
+
+.formOthers {
+  width: 100%;
+  padding: 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image {
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.menuWrapper {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+.menu {
+  transform: scale(1.75);
+}
+
+.lines {
+  display: flex;
+  gap: 7px;
+}
+
+.line {
+  display: block;
+  width: 45px;
+  height: 2.5px;
+  background-color: white;
+}
+
+.lineDisabled {
+  display: block;
+  width: 45px;
+  height: 2.5px;
+  background-color: white;
+  opacity: 0.4;
+}
+
+.viewContainer {
+  width: min-content;
+  padding: 120px;
+}
+
+.title {
+  color: white;
+  font-size: 60px;
+}
+
+.heading {
+  padding-top: 50px;
+}

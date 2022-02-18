@@ -1,5 +1,12 @@
-import { Accordion, List, ThemeIcon } from "@mantine/core";
-import { BiBook, BiBookAlt, BiBookmarkAlt, BiBookOpen, BiStats, BiTimeFive } from "react-icons/bi";
+import { Accordion, List, ThemeIcon } from '@mantine/core';
+import {
+	BiBook,
+	BiBookAlt,
+	BiBookmarkAlt,
+	BiBookOpen,
+	BiStats,
+	BiTimeFive,
+} from 'react-icons/bi';
 
 export default function Statistics() {
 	return (
@@ -15,7 +22,7 @@ export default function Statistics() {
 				<List spacing="xs" size="sm" center>
 					<List.Item
 						icon={
-							<ThemeIcon color="blue" size={22} radius="xl">
+							<ThemeIcon color="blue" size={24} radius="xl">
 								<BiTimeFive size={14} />
 							</ThemeIcon>
 						}
@@ -24,7 +31,7 @@ export default function Statistics() {
 					</List.Item>
 					<List.Item
 						icon={
-							<ThemeIcon color="yellow" size={22} radius="xl">
+							<ThemeIcon color="yellow" size={24} radius="xl">
 								<BiBookOpen size={14} />
 							</ThemeIcon>
 						}
@@ -33,7 +40,7 @@ export default function Statistics() {
 					</List.Item>
 					<List.Item
 						icon={
-							<ThemeIcon color="teal" size={22} radius="xl">
+							<ThemeIcon color="teal" size={24} radius="xl">
 								<BiBookAlt size={14} />
 							</ThemeIcon>
 						}
@@ -51,8 +58,13 @@ export default function Statistics() {
 					</ThemeIcon>
 				}
 			>
-				Configure components appearance and behavior with vast amount of
-				settings or overwrite any part of component styles
+				<List>
+					<List.Item>Atomic Habits - James Clear</List.Item>
+					<List.Item>Rich Dad Poor Dad - Robert Kiyosaki</List.Item>
+					<List.Item>The 4 hour work week - Tom Ferris</List.Item>
+					<List.Item>Ego Is Your Enemy - Ryan Holiday</List.Item>
+					<List.Item>Art Of War - Sun Tzu</List.Item>
+				</List>
 			</Accordion.Item>
 			<Accordion.Item
 				label="Wishlist"
@@ -62,8 +74,13 @@ export default function Statistics() {
 					</ThemeIcon>
 				}
 			>
-				With new :focus-visible pseudo-class focus ring appears only
-				when user navigates with keyboard
+				<List>
+					<List.Item>Atomic Habits - James Clear</List.Item>
+					<List.Item>Rich Dad Poor Dad - Robert Kiyosaki</List.Item>
+					<List.Item>The 4 hour work week - Tom Ferris</List.Item>
+					<List.Item>Ego Is Your Enemy - Ryan Holiday</List.Item>
+					<List.Item>Art Of War - Sun Tzu</List.Item>
+				</List>
 			</Accordion.Item>
 		</Accordion>
 	);

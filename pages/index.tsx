@@ -11,7 +11,7 @@ import {
 	Grid,
 	Center,
 } from '@mantine/core';
-import { BiBook, BiBookAdd, BiUser, BiTime } from 'react-icons/bi';
+import { BiBook, BiUser, BiTime } from 'react-icons/bi';
 
 import styles from '../styles/Home.module.scss';
 import { useState } from 'react';
@@ -20,10 +20,11 @@ import Book from '../components/Book';
 import { BookInterface, BookStatus } from '../types/interfaces';
 import Books from '../components/Books';
 import Profile from '../components/Profile';
+import Timer from "../components/Timer";
 
 enum Option {
 	books,
-	addBook,
+	timer,
 	profile,
 }
 
@@ -73,14 +74,14 @@ const Home: NextPage = () => {
 							</Button>
 							<Button
 								variant={
-									menuOption == Option.addBook
+									menuOption == Option.timer
 										? 'light'
 										: 'subtle'
 								}
 								color="gray"
 								className={styles.menuOption}
 								onClick={() => {
-									setMenuOption(Option.addBook);
+									setMenuOption(Option.timer);
 								}}
 							>
 								<ThemeIcon
@@ -88,11 +89,11 @@ const Home: NextPage = () => {
 									variant="light"
 									color="green"
 								>
-									<BiBookAdd size="20px" />
+									<BiTime size="20px" />
 								</ThemeIcon>
 
 								<Text size="sm" weight={'400'} color="black">
-									Add Book
+									Timer
 								</Text>
 							</Button>
 							<Button
@@ -130,7 +131,7 @@ const Home: NextPage = () => {
 					}
 				>
 					{menuOption === Option.books && <Books />}
-					{menuOption === Option.addBook && <div>Add Book page </div>}
+					{menuOption === Option.timer && <Timer/>}
 					{menuOption === Option.profile && <Profile />}
 				</AppShell>
 			</div>

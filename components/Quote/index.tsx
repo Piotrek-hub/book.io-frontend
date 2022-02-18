@@ -12,7 +12,6 @@ export default function Quote() {
 	useEffect(() => {
 		fetchQuote().then((response) => {
 			const { author, quote } = response.data;
-			console.log(quote);
 			setQuote({ quote, author });
 		});
 	}, []);

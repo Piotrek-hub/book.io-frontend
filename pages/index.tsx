@@ -8,11 +8,15 @@ import {
 	Text,
 	ThemeIcon,
 	Button,
+	Grid,
 } from '@mantine/core';
-import styles from '../styles/Home.module.scss';
-
 import { BiBook, BiBookAdd, BiUser } from 'react-icons/bi';
+
+import styles from '../styles/Home.module.scss';
 import { useState } from 'react';
+
+import Book from '../components/Book';
+import { BookInterface, BookStatus } from '../types/interfaces';
 
 enum Option {
 	books,
@@ -116,7 +120,32 @@ const Home: NextPage = () => {
 						</Header>
 					}
 				>
-					{/* Your application here */}
+					{menuOption === Option.books && (
+						<Grid
+							columns={8}
+							justify="flex-start"
+							gutter="xl"
+							style={{
+								padding: '10px',
+							}}
+						>
+							{books.map((book: BookInterface) => (
+								<Grid.Col span={2}>
+									<Book
+										title={book.title}
+										author={book.author}
+										pages={book.pages}
+										dateCompleted={book.dateCompleted}
+										status={book.status}
+									></Book>
+								</Grid.Col>
+							))}
+						</Grid>
+					)}
+					{menuOption === Option.addBook && <div>Add Book page </div>}
+					{menuOption === Option.profile && (
+						<div>Profile page page </div>
+					)}
 				</AppShell>
 			</div>
 		</div>
@@ -124,3 +153,48 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+const books = [
+	{
+		title: 'Atomic Habits',
+		author: 'James Clear',
+		pages: 200,
+		dateCompleted: '',
+		status: BookStatus.reading,
+	},
+	{
+		title: 'Atomic Habits',
+		author: 'James Clear',
+		pages: 200,
+		dateCompleted: '',
+		status: BookStatus.reading,
+	},
+	{
+		title: 'Atomic Habits',
+		author: 'James Clear',
+		pages: 200,
+		dateCompleted: '',
+		status: BookStatus.reading,
+	},
+	{
+		title: 'Atomic Habits',
+		author: 'James Clear',
+		pages: 200,
+		dateCompleted: '',
+		status: BookStatus.reading,
+	},
+	{
+		title: 'Atomic Habits',
+		author: 'James Clear',
+		pages: 200,
+		dateCompleted: '',
+		status: BookStatus.reading,
+	},
+	{
+		title: 'Atomic Habits',
+		author: 'James Clear',
+		pages: 200,
+		dateCompleted: '',
+		status: BookStatus.reading,
+	},
+];

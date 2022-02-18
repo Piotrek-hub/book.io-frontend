@@ -9,6 +9,5 @@ export interface BookInterface {
 export enum BookStatus {
 	notStarted,
 	reading,
-	planned,
-	read,
+	finished,
 }

@@ -10,7 +10,7 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 
-import { BiCheck } from 'react-icons/bi';
+import { BiCheck, BiTime } from 'react-icons/bi';
 import { useState } from 'react';
 
 export default function Book({
@@ -30,30 +30,17 @@ export default function Book({
 				title="Book edit panel here"
 			></Modal>
 			<div style={{ width: 340, margin: 'auto' }}>
-				<Card shadow="sm" padding="lg">
-					<Card.Section>
-						<Box
-							sx={(theme) => ({
-								backgroundColor: theme.colors.blue,
-								width: '100%',
-								height: '120px',
-							})}
-						/>
-					</Card.Section>
-
-					<Group
-						position="apart"
-						style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
-					>
+				<Card shadow="sm">
+					<Group position="apart" style={{ marginBottom: 5 }}>
 						<Text weight={500}>{title}</Text>
 						<Badge
-							color={status == BookStatus.read ? 'green' : 'pink'}
+							color={
+								status == BookStatus.finished ? 'green' : 'pink'
+							}
 							variant="light"
 						>
 							{status == BookStatus.notStarted && 'Not Started'}
-							{status == BookStatus.planned && 'Planned'}
-							{status == BookStatus.reading && 'Reading'}
-							{status == BookStatus.read && (
+							{status == BookStatus.reading && (
 								<Text
 									size="xs"
 									style={{
@@ -63,7 +50,28 @@ export default function Book({
 										justifyContent: 'space-between',
 									}}
 								>
-									<BiCheck size={'14px'} /> Read
+									<BiTime
+										size={'14px'}
+										style={{ margin: '0 5px' }}
+									/>{' '}
+									In Progress
+								</Text>
+							)}
+							{status == BookStatus.finished && (
+								<Text
+									size="xs"
+									style={{
+										fontSize: '10px',
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'space-between',
+									}}
+								>
+									<BiCheck
+										size={'14px'}
+										style={{ marginRight: '5px' }}
+									/>{' '}
+									Finished
 								</Text>
 							)}
 						</Badge>

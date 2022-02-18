@@ -1,107 +1,107 @@
 .main {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .formSection {
-  width: 40%;
-  height: 100vh;
+	width: 40%;
+	height: 100vh;
 }
 
 .view {
-  width: 60%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
+	width: 60%;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
 }
 
 .formSection {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 15px;
-  padding: 0 120px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 15px;
+	padding: 0 120px;
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
 }
 
 .miniButtons {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 40%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	width: 40%;
 }
 
 .formOthers {
-  width: 100%;
-  padding: 0 120px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	width: 100%;
+	padding: 0 120px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .image {
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-  transform: scale(0.9);
+	height: 100%;
+	position: absolute;
+	z-index: -1;
+	transform: scale(0.9);
 }
 
 .menuWrapper {
-  position: absolute;
-  top: 75px;
-  right: 25px;
+	position: absolute;
+	top: 75px;
+	right: 25px;
 }
 
 .menu {
-  transform: scale(1.75);
+	transform: scale(1.75);
 }
 
 .lines {
-  display: flex;
-  gap: 7px;
+	display: flex;
+	gap: 7px;
 }
 
 .line {
-  display: block;
-  width: 45px;
-  height: 2.5px;
-  background-color: white;
+	display: block;
+	width: 45px;
+	height: 2.5px;
+	background-color: white;
 }
 
 .lineDisabled {
-  display: block;
-  width: 45px;
-  height: 2.5px;
-  background-color: white;
-  opacity: 0.4;
+	display: block;
+	width: 45px;
+	height: 2.5px;
+	background-color: white;
+	opacity: 0.4;
 }
 
 .viewContainer {
-  width: min-content;
-  padding: 120px;
+	width: min-content;
+	padding: 120px;
 }
 
 .title {
-  color: white;
-  font-size: 60px;
+	color: white;
+	font-size: 60px;
 }
 
 .heading {
-  padding-top: 50px;
+	padding-top: 50px;
 }

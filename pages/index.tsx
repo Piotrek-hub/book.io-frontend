@@ -9,14 +9,17 @@ import {
 	ThemeIcon,
 	Button,
 	Grid,
+	Center,
 } from '@mantine/core';
-import { BiBook, BiBookAdd, BiUser } from 'react-icons/bi';
+import { BiBook, BiBookAdd, BiUser, BiTime } from 'react-icons/bi';
 
 import styles from '../styles/Home.module.scss';
 import { useState } from 'react';
 
 import Book from '../components/Book';
 import { BookInterface, BookStatus } from '../types/interfaces';
+import Books from '../components/Books';
+import Profile from '../components/Profile';
 
 enum Option {
 	books,
@@ -40,7 +43,11 @@ const Home: NextPage = () => {
 				<AppShell
 					padding="md"
 					navbar={
-						<Navbar width={{ base: 250 }} height={500} padding="sm">
+						<Navbar
+							width={{ base: 250 }}
+							height={'90vh'}
+							padding="sm"
+						>
 							<Button
 								variant={
 									menuOption == Option.books
@@ -115,37 +122,16 @@ const Home: NextPage = () => {
 						</Navbar>
 					}
 					header={
-						<Header height={65} padding="xs">
-							<Title order={2}>book.io</Title>
+						<Header height={'7vh'} padding="xs">
+							<Center inline>
+								<Title order={2}>book.io</Title>
+							</Center>
 						</Header>
 					}
 				>
-					{menuOption === Option.books && (
-						<Grid
-							columns={8}
-							justify="flex-start"
-							gutter="xl"
-							style={{
-								padding: '10px',
-							}}
-						>
-							{books.map((book: BookInterface) => (
-								<Grid.Col span={2}>
-									<Book
-										title={book.title}
-										author={book.author}
-										pages={book.pages}
-										dateCompleted={book.dateCompleted}
-										status={book.status}
-									></Book>
-								</Grid.Col>
-							))}
-						</Grid>
-					)}
+					{menuOption === Option.books && <Books />}
 					{menuOption === Option.addBook && <div>Add Book page </div>}
-					{menuOption === Option.profile && (
-						<div>Profile page page </div>
-					)}
+					{menuOption === Option.profile && <Profile />}
 				</AppShell>
 			</div>
 		</div>
@@ -153,48 +139,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-const books = [
-	{
-		title: 'Atomic Habits',
-		author: 'James Clear',
-		pages: 200,
-		dateCompleted: '',
-		status: BookStatus.reading,
-	},
-	{
-		title: 'Atomic Habits',
-		author: 'James Clear',
-		pages: 200,
-		dateCompleted: '',
-		status: BookStatus.reading,
-	},
-	{
-		title: 'Atomic Habits',
-		author: 'James Clear',
-		pages: 200,
-		dateCompleted: '',
-		status: BookStatus.reading,
-	},
-	{
-		title: 'Atomic Habits',
-		author: 'James Clear',
-		pages: 200,
-		dateCompleted: '',
-		status: BookStatus.reading,
-	},
-	{
-		title: 'Atomic Habits',
-		author: 'James Clear',
-		pages: 200,
-		dateCompleted: '',
-		status: BookStatus.reading,
-	},
-	{
-		title: 'Atomic Habits',
-		author: 'James Clear',
-		pages: 200,
-		dateCompleted: '',
-		status: BookStatus.reading,
-	},
-];

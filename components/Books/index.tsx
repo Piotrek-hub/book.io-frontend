@@ -3,12 +3,26 @@ import { BookInterface, BookStatus } from '../../types/interfaces';
 import Book from '../Book';
 import {BiBookAdd} from "react-icons/bi"
 import AddBookForm from "../AddBookForm";
+import {useEffect, useState} from "react";
+import {fetchBooks} from "../../utils/api";
 
 export default function Books() {
+	const [books, setBooks] = useState<Array<BookInterface>>([])
+
+	const getBooks = async () => {
+		const b = await fetchBooks();
+		console.log(b)
+		setBooks(b);
+	}
+
+	useEffect(() => {
+		getBooks();
+	}, [])
+
 
 	return (
 		<Grid
-			columns={8}
+			columns={4}
 			justify="flex-start"
 
 			sx={() => ({
@@ -24,9 +38,9 @@ export default function Books() {
 				<Divider my="xs" label="Finished Books" />
 			</Grid.Col>
 			{books.map((book: BookInterface) => {
-				if (book.status === BookStatus.finished) {
+				//if (book.status === BookStatus.finished) {
 					return (
-						<Grid.Col span={2}>
+						<Grid.Col span={1} key={book.title}>
 							<Book
 								title={book.title}
 								author={book.author}
@@ -36,7 +50,7 @@ export default function Books() {
 							></Book>
 						</Grid.Col>
 					);
-				}
+				//}
 			})}
 
 			<Grid.Col>
@@ -61,7 +75,7 @@ export default function Books() {
 	);
 }
 
-const books = [
+const booksArr = [
 	{
 		title: 'Atomic Habits',
 		author: 'James Clear',

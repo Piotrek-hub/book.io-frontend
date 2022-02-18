@@ -1,18 +1,26 @@
-import { Grid, Divider, Title } from '@mantine/core';
+import {Grid, Divider, Modal, Button} from '@mantine/core';
 import { BookInterface, BookStatus } from '../../types/interfaces';
 import Book from '../Book';
+import {BiBookAdd} from "react-icons/bi"
+import AddBookForm from "../AddBookForm";
 
 export default function Books() {
+
 	return (
 		<Grid
-			columns={7}
+			columns={8}
 			justify="flex-start"
-			gutter="xl"
+
 			sx={() => ({
 				padding: '10px',
+				position: "relative"
 			})}
 		>
-			<Grid.Col>
+
+		<AddBookForm/>
+
+
+			<Grid.Col >
 				<Divider my="xs" label="Finished Books" />
 			</Grid.Col>
 			{books.map((book: BookInterface) => {
@@ -54,6 +62,13 @@ export default function Books() {
 }
 
 const books = [
+	{
+		title: 'Atomic Habits',
+		author: 'James Clear',
+		pages: 200,
+		dateCompleted: '',
+		status: BookStatus.finished,
+	},
 	{
 		title: 'Atomic Habits',
 		author: 'James Clear',

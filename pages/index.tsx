@@ -123,7 +123,7 @@ const Home: NextPage = () => {
 						</Navbar>
 					}
 					header={
-						<Header height={'7vh'} padding="xs">
+						<Header height={'7vh'} padding="xs" style={{paddingLeft:"25px"}}>
 							<Center inline>
 								<Title order={2}>book.io</Title>
 							</Center>

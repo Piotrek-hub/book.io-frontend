@@ -22,8 +22,12 @@ const Login: NextPage = () => {
 
 	const submitForm = async (username: string, password: string) => {
 		const userKey = await login(username, password)
-		dispatch(setUser({userKey: userKey, username: username}))
-		Router.push("/")
+		if(userKey.length > 0) {
+			dispatch(setUser({userKey: userKey, username: username}))
+			Router.push("/")
+		}else {
+			console.log("Please register")
+		}
 	}
 
 	return (

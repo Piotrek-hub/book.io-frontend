@@ -18,7 +18,6 @@ import {useEffect} from "react";
 
 export default function Profile() {
 	const user: any = useSelector<any>((state) => state.user)
-	useEffect(() => {console.log(user)}, [])
 	return (
 		<Grid columns={2}>
 			<Grid.Col span={1}>

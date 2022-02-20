@@ -1,22 +1,23 @@
 import {Grid, Divider, Modal, Button} from '@mantine/core';
 import { BookInterface, BookStatus } from '../../types/interfaces';
 import Book from '../Book';
-import {BiBookAdd} from "react-icons/bi"
 import AddBookForm from "../AddBookForm";
 import {useEffect, useState} from "react";
 import {fetchBooks} from "../../utils/api";
+import {useSelector} from "react-redux";
 
 export default function Books() {
 	const [books, setBooks] = useState<Array<BookInterface>>([])
+	const user: any = useSelector<any>((state) => state.user)
 
 	const getBooks = async () => {
-		const b = await fetchBooks();
+		const b = await fetchBooks(user.userKey);
 		console.log(b)
 		setBooks(b);
 	}
 
 	useEffect(() => {
-		getBooks();
+		getBooks()
 	}, [])
 
 

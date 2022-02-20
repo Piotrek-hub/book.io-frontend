@@ -5,7 +5,7 @@ import { Button, TextInput, Text, Title } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { BiUser, BiKey } from 'react-icons/bi';
 import { HiMenuAlt3 } from 'react-icons/hi';
-import {login} from "../../utils/api";
+import {register, login} from "../../utils/api";
 
 const Login: NextPage = () => {
 	const form = useForm({
@@ -15,6 +15,12 @@ const Login: NextPage = () => {
 		},
 
 	});
+
+	const submitForm = async (userLogin: string, password: string) => {
+		const userKey = await login(userLogin, password)
+		console.log(userKey)
+	}
+
 	return (
 		<div>
 			<Head>
@@ -30,7 +36,7 @@ const Login: NextPage = () => {
 					<div className={styles.formSection}>
 						<div></div>
 
-						<form className={styles.form} onSubmit={form.onSubmit((values) => login(values.login, values.password))}>
+						<form className={styles.form} onSubmit={form.onSubmit((values) => submitForm(values.login, values.password))}>
 							<TextInput
 								icon={<BiUser color="black" />}
 								placeholder="Your login or e-mail"
@@ -71,7 +77,7 @@ const Login: NextPage = () => {
 						</form>
 
 						<div className={styles.formOthers}>
-							<Button variant="subtle" compact>
+							<Button variant="subtle" compact >
 								<Text color="dimmed" size="xs" weight="400">
 									Login with
 								</Text>

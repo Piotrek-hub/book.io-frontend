@@ -29,8 +29,8 @@ export async function fetchBooks(): Promise<Array<BookInterface>> {
     return books;
 }
 
-export async function login(login: string, password: string) {
-    const response = await fetch('http://127.0.0.1:3000/getBooks',{
+export function register(login: string, password: string) {
+    fetch('http://127.0.0.1:3000/register',{
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -42,4 +42,19 @@ export async function login(login: string, password: string) {
         }),
     }).then(response => response.json())
         .then(console.log)
+}
+
+export async function login(login: string, password: string): Promise<string> {
+    const resp = await fetch('http://127.0.0.1:3000/login',{
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            login,
+            password,
+        }),
+    }).then(response => response.json())
+    return resp.user_key
 }

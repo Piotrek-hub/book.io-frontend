@@ -2,11 +2,19 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from './styles.module.scss';
 import { Button, TextInput, Text, Title } from '@mantine/core';
-
+import { useForm } from '@mantine/hooks';
 import { BiUser, BiKey } from 'react-icons/bi';
 import { HiMenuAlt3 } from 'react-icons/hi';
+import {login} from "../../utils/api";
 
 const Login: NextPage = () => {
+	const form = useForm({
+		initialValues: {
+			login: '',
+			password: '',
+		},
+
+	});
 	return (
 		<div>
 			<Head>
@@ -21,42 +29,46 @@ const Login: NextPage = () => {
 				<div className={styles.main}>
 					<div className={styles.formSection}>
 						<div></div>
-						<div className={styles.form}>
+
+						<form className={styles.form} onSubmit={form.onSubmit((values) => login(values.login, values.password))}>
 							<TextInput
 								icon={<BiUser color="black" />}
 								placeholder="Your login or e-mail"
+								{...form.getInputProps('login')}
 							/>
 							<TextInput
 								icon={<BiKey color="black" />}
 								placeholder="Password"
+								{...form.getInputProps('password')}
 							/>
-							<div className={styles.buttons}>
-								<div className={styles.miniButtons}>
-									<Button
-										variant="subtle"
-										color="green"
-										compact
-									>
-										<Text color="dimmed" size="xs">
-											Register
-										</Text>
-									</Button>
 
-									<Button
-										variant="subtle"
-										color="green"
-										compact
-									>
-										<Text color="dimmed" size="xs">
-											Forgot Password?
-										</Text>
-									</Button>
-								</div>
-								<Button color="green" radius="sm">
-									Sign In
+						<div className={styles.buttons}>
+							<div className={styles.miniButtons}>
+								<Button
+									variant="subtle"
+									color="green"
+									compact
+								>
+									<Text color="dimmed" size="xs">
+										Register
+									</Text>
+								</Button>
+
+								<Button
+									variant="subtle"
+									color="green"
+									compact
+								>
+									<Text color="dimmed" size="xs">
+										Forgot Password?
+									</Text>
 								</Button>
 							</div>
+							<Button color="green" radius="sm" type={"submit"}>
+								Sign In
+							</Button>
 						</div>
+						</form>
 
 						<div className={styles.formOthers}>
 							<Button variant="subtle" compact>

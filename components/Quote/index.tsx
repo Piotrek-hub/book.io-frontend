@@ -2,7 +2,7 @@ import { Blockquote } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import fetchQuote from '../../utils/fetchQuote';
 interface Quote {
-	quote: string;
+	content: string;
 	author: string;
 }
 
@@ -11,9 +11,10 @@ export default function Quote() {
 
 	useEffect(() => {
 		fetchQuote().then((response) => {
-			const { author, quote } = response.data;
-			setQuote({ quote, author });
+			console.log(response)
+			const { author, content } = response;
+			setQuote({ content, author });
 		});
 	}, []);
-	return <Blockquote cite={`- ${quote?.author}`}>{quote?.quote}</Blockquote>;
+	return <Blockquote cite={`- ${quote?.author}`}>{quote?.content}</Blockquote>;
 }

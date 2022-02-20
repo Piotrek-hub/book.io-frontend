@@ -4,38 +4,31 @@ import {
 	Text,
 	Space,
 	Grid,
-	Accordion,
 	Group,
-	ThemeIcon,
-	Blockquote,
-	List,
 } from '@mantine/core';
 
 import { Calendar } from '@mantine/dates';
-import { useState } from 'react';
 
-import {
-	BiStats,
-	BiBook,
-	BiBookmarkAlt,
-	BiTimeFive,
-	BiBookOpen,
-	BiBookAlt,
-} from 'react-icons/bi';
+
+import { useDispatch, useSelector } from "react-redux";
+
 import Quote from '../Quote';
 import Statistics from '../Statistics';
+import {useEffect} from "react";
 
 export default function Profile() {
+	const user: any = useSelector<any>((state) => state.user)
+	useEffect(() => {console.log(user)}, [])
 	return (
 		<Grid columns={2}>
 			<Grid.Col span={1}>
 				<Center inline>
 					<Avatar color="cyan" radius="md">
-						PG
+						{user.username[0] ? user.username[0] : "LOG"}
 					</Avatar>
 					<Space w="sm" />
 					<Text weight="600" size="md">
-						Piotr Gałka
+						{user.username ? user.username : "PLEASE LOGIN"}
 					</Text>
 				</Center>
 				<Space h="lg" />

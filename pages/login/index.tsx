@@ -5,9 +5,13 @@ import { Button, TextInput, Text, Title } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { BiUser, BiKey } from 'react-icons/bi';
 import { HiMenuAlt3 } from 'react-icons/hi';
-import {register, login} from "../../utils/api";
+import { login } from "../../utils/api";
+import { useDispatch } from "react-redux";
+import {setUser} from "../../redux/user";
+import Router from 'next/router'
 
 const Login: NextPage = () => {
+	const dispatch = useDispatch()
 	const form = useForm({
 		initialValues: {
 			login: '',
@@ -16,9 +20,10 @@ const Login: NextPage = () => {
 
 	});
 
-	const submitForm = async (userLogin: string, password: string) => {
-		const userKey = await login(userLogin, password)
-		console.log(userKey)
+	const submitForm = async (username: string, password: string) => {
+		const userKey = await login(username, password)
+		dispatch(setUser({userKey: userKey, username: username}))
+		Router.push("/")
 	}
 
 	return (

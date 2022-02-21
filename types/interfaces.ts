@@ -3,11 +3,5 @@ export interface BookInterface {
 	author: string;
 	pages: number;
 	dateCompleted: string;
-	status: BookStatus;
-}
-
-export enum BookStatus {
-	notStarted,
-	reading,
-	finished,
+	status: string ;
 }

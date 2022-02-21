@@ -1,4 +1,4 @@
-import { BookInterface, BookStatus } from '../../types/interfaces';
+import { BookInterface } from '../../types/interfaces';
 import {
 	Card,
 	Text,
@@ -12,6 +12,7 @@ import {
 
 import { BiCheck, BiTime } from 'react-icons/bi';
 import { useState } from 'react';
+import {stat} from "fs";
 
 export default function Book({
 	title,
@@ -29,18 +30,18 @@ export default function Book({
 				onClose={() => setOpened(false)}
 				title="Book edit panel here"
 			></Modal>
-			<div style={{ width: 340, margin: 'auto' }}>
-				<Card shadow="sm">
+			<div style={{ width: 360, margin: 'auto' }}>
+				<Card shadow="md">
 					<Group position="apart" style={{ marginBottom: 5 }}>
 						<Text weight={500}>{title}</Text>
 						<Badge
 							color={
-								status == BookStatus.finished ? 'green' : 'pink'
+								status == "Finished" ? 'green' : 'pink'
 							}
 							variant="light"
 						>
-							{status == BookStatus.notStarted && 'Not Started'}
-							{status == BookStatus.reading && (
+							{status == 'Not Started' && 'Not Started'}
+							{status == "reading" && (
 								<Text
 									size="xs"
 									style={{
@@ -57,7 +58,7 @@ export default function Book({
 									In Progress
 								</Text>
 							)}
-							{status == BookStatus.finished && (
+							{status == "finished" && (
 								<Text
 									size="xs"
 									style={{

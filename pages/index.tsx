@@ -10,7 +10,7 @@ import {
 	Button,
 	Center,
 } from '@mantine/core';
-import { BiBook, BiUser, BiTime } from 'react-icons/bi';
+import { BiBook, BiUser, BiTime, BiUserCircle } from 'react-icons/bi';
 
 import styles from '../styles/Home.module.scss';
 import {useEffect, useState} from 'react';
@@ -20,9 +20,11 @@ import Profile from '../components/Profile';
 import Timer from "../components/Timer";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import Friends from "../components/Friends";
 
 enum Option {
 	books,
+	friends,
 	timer,
 	profile,
 }
@@ -57,6 +59,7 @@ const Home: NextPage = () => {
 							height={'90vh'}
 							padding="sm"
 						>
+							<Navbar.Section>
 							<Button
 								variant={
 									menuOption == Option.books
@@ -80,6 +83,36 @@ const Home: NextPage = () => {
 									Books
 								</Text>
 							</Button>
+								</Navbar.Section>
+							<Navbar.Section>
+
+								<Button
+									variant={
+										menuOption == Option.friends
+											? 'light'
+											: 'subtle'
+									}
+									color="gray"
+									className={styles.menuOption}
+									onClick={() => {
+										setMenuOption(Option.friends);
+									}}
+								>
+									<ThemeIcon
+										className={styles.icon}
+										variant="light"
+										color="cyan"
+									>
+										<BiUser size="20px" />
+									</ThemeIcon>
+
+									<Text size="sm" weight={'400'} color="black">
+										Friends
+									</Text>
+								</Button>
+							</Navbar.Section>
+							<Navbar.Section>
+
 							<Button
 								variant={
 									menuOption == Option.timer
@@ -104,6 +137,8 @@ const Home: NextPage = () => {
 									Timer
 								</Text>
 							</Button>
+							</Navbar.Section>
+							<Navbar.Section>
 							<Button
 								variant={
 									menuOption == Option.profile
@@ -121,13 +156,14 @@ const Home: NextPage = () => {
 									variant="light"
 									color="grape"
 								>
-									<BiUser size="20px" />
+									<BiUserCircle size="20px" />
 								</ThemeIcon>
 
 								<Text size="sm" weight={'400'} color="black">
 									Your Profile
 								</Text>
 							</Button>
+							</Navbar.Section>
 						</Navbar>
 					}
 					header={
@@ -139,6 +175,7 @@ const Home: NextPage = () => {
 					}
 				>
 					{menuOption === Option.books && <Books />}
+					{menuOption === Option.friends && <Friends/>}
 					{menuOption === Option.timer && <Timer/>}
 					{menuOption === Option.profile && <Profile />}
 				</AppShell>

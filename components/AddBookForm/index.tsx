@@ -3,24 +3,36 @@ import { useForm } from '@mantine/hooks';
 
 import {useState} from "react";
 import {BiBookAdd} from "react-icons/bi";
-import {BookStatus} from "../../types/interfaces";
+
+import {addBook} from "../../utils/api";
+
+import {useSelector} from "react-redux";
 
 
 export default function AddBookForm() {
+    // #TODO: Add type
+    const user: any = useSelector<any>((state) => state.user)
+
     const form = useForm({
         initialValues: {
             title: '',
             author: '',
             pages: 0,
-            status: BookStatus.notStarted,
+            status: '',
         },
     });
-
     const [opened, setOpened] = useState(false);
+
+    const handleSubmit = () => {
+        addBook(user.userKey, form.values.title, form.values.author, form.values.pages, form.values.status.toLowerCase())
+        setOpened(false)
+    }
+
+
     return (
         <>
         <Modal opened={opened} onClose={() => setOpened(false)} title="Add New Book!">
-            <form onSubmit={form.onSubmit((values) => console.log(values))}>
+            <form onSubmit={form.onSubmit(() => handleSubmit())}>
                 <TextInput
                     required
                     label="Title"

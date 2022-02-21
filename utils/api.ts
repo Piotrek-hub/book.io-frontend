@@ -1,7 +1,6 @@
-import {BookInterface} from "../types/interfaces";
+import {BookInterface } from "../types/interfaces";
 
 export async function fetchBooks(userKey: string): Promise<Array<BookInterface>> {
-    console.log(userKey)
     const response = await fetch("http://127.0.0.1:3000/getBooks", {
         method: 'POST',
         mode: 'cors',
@@ -13,15 +12,17 @@ export async function fetchBooks(userKey: string): Promise<Array<BookInterface>>
             userKey
         }),
     }).then(response => response.json())
-    let books:Array<BookInterface> = response.books.map((book: any) => ({
-            title: book.Title,
-            author: book.Author,
-            pages: book.Pages,
-            dateCompleted: book.DateCompleted,
-            status: book.Status,
-        }))
-
-    return books;
+    if(response.books) {
+        let books:Array<BookInterface> = response.books.map((book: any) => ({
+                title: book.Title,
+                author: book.Author,
+                pages: book.Pages,
+                dateCompleted: book.DateCompleted,
+                status: book.Status,
+            }))
+        return books;
+    }
+    return []
 }
 
 export async function login(login: string, password: string): Promise<string> {
@@ -40,6 +41,28 @@ export async function login(login: string, password: string): Promise<string> {
         return ""
     }
     return resp.user_key
+}
+
+export async function addBook(userKey: string, title: string, author: string, pages: number, status: string, ) {
+    const data = {
+        userKey,
+        title,
+        author,
+        pages,
+        status,
+    }
+    console.log(data)
+    const response = await fetch("http://127.0.0.1:3000/addBook", {
+        method: "post",
+        mode: 'cors',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(resp => resp.json())
+
+    console.log(response)
 }
 
 export function register(login: string, password: string) {

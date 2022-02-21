@@ -8,7 +8,6 @@ import {
 	Text,
 	ThemeIcon,
 	Button,
-	Grid,
 	Center,
 } from '@mantine/core';
 import { BiBook, BiUser, BiTime } from 'react-icons/bi';
@@ -20,7 +19,7 @@ import Books from '../components/Books';
 import Profile from '../components/Profile';
 import Timer from "../components/Timer";
 import {useSelector} from "react-redux";
-import {Router, useRouter} from "next/router";
+import {useRouter} from "next/router";
 
 enum Option {
 	books,

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from './styles.module.scss';
-import { Button, TextInput, Text, Title } from '@mantine/core';
+import { Button, TextInput, Text, Title, LoadingOverlay } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { BiUser, BiKey } from 'react-icons/bi';
 import { HiMenuAlt3 } from 'react-icons/hi';
@@ -9,9 +9,12 @@ import { login } from "../../utils/api";
 import { useDispatch } from "react-redux";
 import {setUser} from "../../redux/user";
 import Router from 'next/router'
+import {useState} from "react";
 
 const Login: NextPage = () => {
 	const dispatch = useDispatch()
+	const [visible, setVisible] = useState(false);
+
 	const form = useForm({
 		initialValues: {
 			login: '',
@@ -21,10 +24,12 @@ const Login: NextPage = () => {
 	});
 
 	const submitForm = async (username: string, password: string) => {
+		setVisible(true)
 		const userKey = await login(username, password)
 		if(userKey.length > 0) {
 			dispatch(setUser({userKey: userKey, username: username}))
 			Router.push("/")
+			setVisible(false)
 		}else {
 			console.log("Please register")
 		}
@@ -41,11 +46,14 @@ const Login: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
+				<LoadingOverlay visible={visible} loaderProps={{ size: 'sm', color: 'green', variant: 'bars' }}/>
 				<div className={styles.main}>
 					<div className={styles.formSection}>
+
 						<div></div>
 
 						<form className={styles.form} onSubmit={form.onSubmit((values) => submitForm(values.login, values.password))}>
+
 							<TextInput
 								icon={<BiUser color="black" />}
 								placeholder="Your login or e-mail"
@@ -58,6 +66,7 @@ const Login: NextPage = () => {
 							/>
 
 						<div className={styles.buttons}>
+
 							<div className={styles.miniButtons}>
 								<Button
 									variant="subtle"

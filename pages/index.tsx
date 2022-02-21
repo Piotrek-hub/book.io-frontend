@@ -14,13 +14,13 @@ import {
 import { BiBook, BiUser, BiTime } from 'react-icons/bi';
 
 import styles from '../styles/Home.module.scss';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 
-import Book from '../components/Book';
-import { BookInterface, BookStatus } from '../types/interfaces';
 import Books from '../components/Books';
 import Profile from '../components/Profile';
 import Timer from "../components/Timer";
+import {useSelector} from "react-redux";
+import {Router, useRouter} from "next/router";
 
 enum Option {
 	books,
@@ -29,6 +29,15 @@ enum Option {
 }
 
 const Home: NextPage = () => {
+	// #TODO: Interface for user
+	const user: any = useSelector<any>((state) => state.user)
+	const router = useRouter()
+
+	useEffect(() => {
+		if(user.userKey.length === 0) {
+			router.push("/login")
+		}
+	}, [])
 	const [menuOption, setMenuOption] = useState<Option>(Option.profile);
 	return (
 		<div>

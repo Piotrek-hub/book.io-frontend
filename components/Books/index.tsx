@@ -12,7 +12,8 @@ export default function Books() {
 	const user: any = useSelector<any>((state) => state.user)
 
 	const getBooks = async () => {
-		const b = await fetchBooks(user.userKey);
+		const b = await fetchBooks(user.username);
+		console.log(b)
 		setBooks(b);
 	}
 

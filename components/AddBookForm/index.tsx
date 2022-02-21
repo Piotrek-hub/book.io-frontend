@@ -24,7 +24,7 @@ export default function AddBookForm() {
     const [opened, setOpened] = useState(false);
 
     const handleSubmit = () => {
-        addBook(user.userKey, form.values.title, form.values.author, form.values.pages, form.values.status.toLowerCase())
+        addBook(user.userKey, user.username, form.values.title, form.values.author, form.values.pages, form.values.status.toLowerCase())
         setOpened(false)
     }
 

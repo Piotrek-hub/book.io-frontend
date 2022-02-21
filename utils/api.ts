@@ -1,6 +1,6 @@
 import {BookInterface } from "../types/interfaces";
 
-export async function fetchBooks(userKey: string): Promise<Array<BookInterface>> {
+export async function fetchBooks(username: string): Promise<Array<BookInterface>> {
     const response = await fetch("http://127.0.0.1:3000/getBooks", {
         method: 'POST',
         mode: 'cors',
@@ -9,7 +9,7 @@ export async function fetchBooks(userKey: string): Promise<Array<BookInterface>>
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userKey
+            username
         }),
     }).then(response => response.json())
     if(response.books) {
@@ -43,15 +43,15 @@ export async function login(login: string, password: string): Promise<string> {
     return resp.user_key
 }
 
-export async function addBook(userKey: string, title: string, author: string, pages: number, status: string, ) {
+export async function addBook(userKey: string, user: string, title: string, author: string, pages: number, status: string, ) {
     const data = {
         userKey,
+        "username": user,
         title,
         author,
         pages,
         status,
     }
-    console.log(data)
     const response = await fetch("http://127.0.0.1:3000/addBook", {
         method: "post",
         mode: 'cors',
@@ -65,18 +65,31 @@ export async function addBook(userKey: string, title: string, author: string, pa
     console.log(response)
 }
 
-export function register(login: string, password: string) {
-    fetch('http://127.0.0.1:3000/register',{
-        method: 'POST',
+export async function fetchUsers(): Promise<Array<string>> {
+    const response = await fetch('http://127.0.0.1:3000/getUsers', {
+        method: 'GET',
+        mode: 'cors',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            login,
-            password,
-        }),
+
     }).then(response => response.json())
-        .then(console.log)
+    return response.users.map((user: string ) => (user))
 }
+
+// export function register(login: string, password: string) {
+//     fetch('http://127.0.0.1:3000/register',{
+//         method: 'POST',
+//         headers: {
+//             Accept: 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//             login,
+//             password,
+//         }),
+//     }).then(response => response.json())
+//         .then(console.log)
+// }
 

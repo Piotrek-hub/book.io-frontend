@@ -1,6 +1,7 @@
 import {Input, Text, Box, Button, Space, Grid} from "@mantine/core";
 import {useEffect, useState} from "react";
 import Link from 'next/link'
+import {fetchUsers} from "../../utils/api";
 
 export default function Friends() {
     const [input, setInput] = useState("")
@@ -15,9 +16,9 @@ export default function Friends() {
         }
     }
 
-    // useEffect(() => {
-    //     fetchUsers().then(res => setUsers(res))
-    // }, [])
+    useEffect(() => {
+        fetchUsers().then(res => setUsers(res))
+    }, [])
 
     return (
         <div>

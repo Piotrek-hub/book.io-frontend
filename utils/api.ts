@@ -43,6 +43,24 @@ export async function login(login: string, password: string): Promise<string> {
     return resp.user_key
 }
 
+export async function register(login: string, password: string): Promise<string>  {
+    const response = await fetch('http://127.0.0.1:3000/register',{
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            login,
+            password,
+        }),
+    }).then(response => response.json())
+
+    return response.userKey.length > 0 ? response.userKey : console.log("An error occured")
+
+}
+
+
 export async function addBook(userKey: string, user: string, title: string, author: string, pages: number, status: string, ) {
     const data = {
         userKey,
@@ -78,18 +96,4 @@ export async function fetchUsers(): Promise<Array<string>> {
     return response.users.map((user: string ) => (user))
 }
 
-// export function register(login: string, password: string) {
-//     fetch('http://127.0.0.1:3000/register',{
-//         method: 'POST',
-//         headers: {
-//             Accept: 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             login,
-//             password,
-//         }),
-//     }).then(response => response.json())
-//         .then(console.log)
-// }
 

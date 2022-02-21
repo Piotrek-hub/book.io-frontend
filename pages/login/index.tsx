@@ -5,7 +5,7 @@ import { Button, TextInput, Text, Title, LoadingOverlay } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { BiUser, BiKey } from 'react-icons/bi';
 import { HiMenuAlt3 } from 'react-icons/hi';
-import { login } from "../../utils/api";
+import {login, register} from "../../utils/api";
 import { useDispatch } from "react-redux";
 import {setUser} from "../../redux/user";
 import Router from 'next/router'
@@ -23,9 +23,10 @@ const Login: NextPage = () => {
 
 	});
 
-	const submitForm = async (username: string, password: string) => {
+	const submitFormLogin = async (username: string, password: string) => {
 		setVisible(true)
 		const userKey = await login(username, password)
+
 		if(userKey.length > 0) {
 			dispatch(setUser({userKey: userKey, username: username}))
 			Router.push("/")
@@ -33,6 +34,14 @@ const Login: NextPage = () => {
 		}else {
 			console.log("Please register")
 		}
+	}
+
+	const submitFormRegister = async () => {
+		setVisible(true)
+		register(form.values.login, form.values.password)
+			.then((userKey) => {dispatch(setUser({userKey: userKey, username: form.values.login}))})
+			.then(() => setVisible(false))
+			.then(() => Router.push("/"))
 	}
 
 	return (
@@ -52,7 +61,7 @@ const Login: NextPage = () => {
 
 						<div></div>
 
-						<form className={styles.form} onSubmit={form.onSubmit((values) => submitForm(values.login, values.password))}>
+						<form className={styles.form} onSubmit={form.onSubmit((values) => submitFormLogin(values.login, values.password))}>
 
 							<TextInput
 								icon={<BiUser color="black" />}
@@ -72,6 +81,7 @@ const Login: NextPage = () => {
 									variant="subtle"
 									color="green"
 									compact
+									onClick={submitFormRegister}
 								>
 									<Text color="dimmed" size="xs">
 										Register

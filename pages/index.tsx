@@ -21,6 +21,7 @@ import Timer from "../components/Timer";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import Friends from "../components/Friends";
+import AddBookForm from "../components/AddBookForm";
 
 enum Option {
 	books,
@@ -174,7 +175,7 @@ const Home: NextPage = () => {
 						</Header>
 					}
 				>
-					{menuOption === Option.books && <Books />}
+					{menuOption === Option.books && (<Books username={user.username}/>)}
 					{menuOption === Option.friends && <Friends/>}
 					{menuOption === Option.timer && <Timer/>}
 					{menuOption === Option.profile && <Profile />}

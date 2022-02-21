@@ -12,7 +12,7 @@ import {
 
 import { BiCheck, BiTime } from 'react-icons/bi';
 import { useState } from 'react';
-import {stat} from "fs";
+
 
 export default function Book({
 	title,
@@ -20,7 +20,8 @@ export default function Book({
 	pages,
 	dateCompleted,
 	status,
-}: BookInterface) {
+
+}: BookInterface, ) {
 	const theme = useMantineTheme();
 	const [opened, setOpened] = useState(false);
 	return (
@@ -30,7 +31,7 @@ export default function Book({
 				onClose={() => setOpened(false)}
 				title="Book edit panel here"
 			></Modal>
-			<div style={{ width: 360, margin: 'auto' }}>
+			<div style={{ width: 400, margin: 'auto' }}>
 				<Card shadow="md">
 					<Group position="apart" style={{ marginBottom: 5 }}>
 						<Text weight={500}>{title}</Text>

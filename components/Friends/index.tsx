@@ -5,12 +5,12 @@ import {fetchUsers} from "../../utils/api";
 
 export default function Friends() {
     const [input, setInput] = useState("")
-    const [users, setUsers] = useState<Array<string>>(["Piotrek", "Kamil", "Kacper", "Sergiusz", "Wiktor", ])
+    const [users, setUsers] = useState<Array<string>>([])
     const [visibleUsers, setVisibleUsers] = useState<Array<string>>([])
 
     const handleInputChange = (e: { target: { value: string } }) => {
         if(e.target.value.length > 0) {
-            setVisibleUsers(users.filter((user) => user.startsWith(e.target.value)))
+            setVisibleUsers(users.filter((user) => user.toLowerCase().startsWith(e.target.value.toLowerCase())))
         }else {
             setVisibleUsers([])
         }

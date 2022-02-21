@@ -6,14 +6,15 @@ import {useEffect, useState} from "react";
 import {fetchBooks} from "../../utils/api";
 import {useSelector} from "react-redux";
 
+interface UserInterface {
+	username: string,
+}
 
-export default function Books() {
+export default function Books({username}: UserInterface) {
 	const [books, setBooks] = useState<Array<BookInterface>>([])
-	const user: any = useSelector<any>((state) => state.user)
 
 	const getBooks = async () => {
-		const b = await fetchBooks(user.username);
-		console.log(b)
+		const b = await fetchBooks(username);
 		setBooks(b);
 	}
 
@@ -33,7 +34,7 @@ export default function Books() {
 			})}
 		>
 
-		<AddBookForm/>
+
 
 
 			<Grid.Col >

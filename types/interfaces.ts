@@ -3,5 +3,5 @@ export interface BookInterface {
 	author: string;
 	pages: number;
 	dateCompleted: string;
-	status: string ;
+	status: string;
 }

@@ -32,6 +32,7 @@ const Login: NextPage = () => {
 			Router.push("/")
 			setVisible(false)
 		}else {
+			setVisible(false)
 			console.log("Please register")
 		}
 	}

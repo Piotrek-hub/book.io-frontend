@@ -35,7 +35,7 @@ export default function Books({username}: UserInterface) {
 		>
 
 
-
+		<AddBookForm/>
 
 			<Grid.Col >
 				<Divider my="xs" label="Finished Books" />
